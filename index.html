@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 干货周报 - 内容创作者必看 | 2026.04.17-04.24</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  
+  :root {
+    --primary: #6C5CE7;
+    --primary-dark: #5A4BD1;
+    --accent: #00B894;
+    --accent-light: #55EFC4;
+    --warning: #FDCB6E;
+    --danger: #FF7675;
+    --bg: #0A0A1A;
+    --bg-card: #12122A;
+    --bg-card-hover: #1A1A3E;
+    --text: #E8E8F0;
+    --text-muted: #8888AA;
+    --border: #2A2A4A;
+    --gradient-1: linear-gradient(135deg, #6C5CE7, #a29bfe);
+    --gradient-2: linear-gradient(135deg, #00B894, #55EFC4);
+    --gradient-3: linear-gradient(135deg, #FDCB6E, #f9ca24);
+    --shadow: 0 8px 32px rgba(0,0,0,0.3);
+  }
+  
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    padding: 20px;
+  }
+  
+  .container { max-width: 900px; margin: 0 auto; }
+
+  /* ===== HEADER ===== */
+  .header {
+    text-align: center;
+    padding: 48px 24px 36px;
+    background: linear-gradient(180deg, rgba(108,92,231,0.15) 0%, transparent 100%);
+    border-radius: 24px;
+    margin-bottom: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content:''; position:absolute; top:-50%; left:-50%;
+    width:200%; height:200%;
+    background: radial-gradient(circle at center, rgba(108,92,231,0.08), transparent 60%);
+    animation: pulse 8s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.1)} }
+  
+  .header-badge {
+    display:inline-block; padding:6px 16px; border-radius:20px;
+    font-size:12px; font-weight:600; letter-spacing:1px;
+    background: var(--gradient-2); color:#000; margin-bottom:16px;
+    position:relative; z-index:1;
+  }
+  h1 {
+    font-size: clamp(24px, 5vw, 38px); font-weight:800;
+    background: var(--gradient-1); -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    margin-bottom:12px; line-height:1.3; position:relative; z-index:1;
+  }
+  .header-meta {
+    display:flex; flex-wrap:wrap; justify-content:center; gap:16px 28px;
+    font-size:13px; color:var(--text-muted); position:relative; z-index:1;
+  }
+  .header-meta span { display:flex; align-items:center; gap:6px; }
+  .header-meta strong { color:var(--accent-light); }
+
+  /* ===== QUOTE BOX ===== */
+  .quote-box {
+    background: linear-gradient(135deg, rgba(0,184,148,0.08), rgba(108,92,231,0.08));
+    border-left: 4px solid var(--accent);
+    padding: 18px 24px; border-radius: 0 12px 12px 0;
+    margin: 0 auto 40px; max-width:700px; font-size:14px;
+    color: var(--text-muted); position:relative;
+  }
+  .quote-box::before { content:'"'; font-size:48px; color:var(--accent); opacity:0.3; position:absolute; top:-10px;left:8px; }
+
+  /* ===== SECTION TITLE ===== */
+  .section-title {
+    display:flex; align-items:center; gap:12px;
+    font-size:22px; font-weight:700; margin-bottom:24px;
+    color: var(--text);
+  }
+  .section-title .icon { font-size:28px; }
+
+  /* ===== ARTICLE CARD ===== */
+  .card {
+    background: var(--bg-card); border:1px solid var(--border);
+    border-radius: 16px; padding:28px; margin-bottom:24px;
+    transition: all 0.3s ease; position:relative;
+  }
+  .card:hover {
+    background: var(--bg-card-hover);
+    border-color: rgba(108,92,231,0.4);
+    box-shadow: var(--shadow); transform: translateY(-2px);
+  }
+  .card-number {
+    display:inline-flex; align-items:center; justify-content:center;
+    width:36px; height:36px; border-radius:10px;
+    font-size:16px; font-weight:800;
+    background: var(--gradient-1); color:#fff; margin-right:14px;
+    flex-shrink:0;
+  }
+  .card-title {
+    font-size:18px; font-weight:700; color:var(--text);
+    display:inline; line-height:1.5;
+  }
+  .card-header { display:flex; align-items:flex-start; margin-bottom:16px; }
+  
+  .card-meta {
+    display:flex; flex-wrap:wrap; gap:10px 20px;
+    margin-bottom:18px; padding-bottom:16px;
+    border-bottom:1px solid rgba(255,255,255,0.05);
+    font-size:13px;
+  }
+  .meta-item { display:flex; align-items:center; gap:5px; color:var(--text-muted); }
+  .meta-item strong { color:var(--accent-light); }
+  .tag {
+    display:inline-block; padding:3px 10px; border-radius:6px;
+    font-size:11px; font-weight:600;
+  }
+  .tag-method { background:rgba(108,92,231,0.15); color:#a29bfe; }
+  .tag-workflow { background:rgba(0,184,148,0.15); color:#55EFC4; }
+  .tag-prompt { background:rgba(253,203,110,0.15); color:#f9ca24; }
+  .tag-tool { background:rgba(116,185,255,0.15); color:#74B9FF; }
+
+  .card-section-title {
+    font-size:14px; font-weight:700; color:var(--accent-light);
+    margin:16px 0 10px; letter-spacing:0.5px;
+  }
+  .card ul { list-style:none; padding-left:0; }
+  .card li {
+    position:relative; padding-left:20px; margin-bottom:10px;
+    font-size:14px; color: rgba(232,232,240,0.85);
+  }
+  .card li::before {
+    content:'→'; position:absolute; left:0; color:var(--primary);
+    font-size:11px; top:3px;
+  }
+  .card li strong { color:var(--text); }
+
+  .why-useful {
+    background: linear-gradient(135deg, rgba(253,203,110,0.06), rgba(0,184,148,0.06));
+    border-radius:12px; padding:16px 20px; margin-top:16px;
+    border:1px solid rgba(253,203,110,0.15);
+  }
+  .why-useful-label {
+    font-size:12px; font-weight:700; color:var(--warning);
+    margin-bottom:6px; letter-spacing:0.5px;
+  }
+  .why-useful p { font-size:14px; color:rgba(232,232,240,0.9); margin:0; }
+
+  .link-btn {
+    display:inline-flex; align-items:center; gap:6px;
+    margin-top:14px; padding:8px 18px; border-radius:8px;
+    font-size:13px; font-weight:600; color:var(--accent-light);
+    background: rgba(0,184,148,0.1); border:1px solid rgba(0,184,148,0.2);
+    text-decoration:none; transition:all 0.2s;
+  }
+  .link-btn:hover { background: rgba(0,184,148,0.2); }
+
+  .note-box {
+    background: rgba(255,118,117,0.08); border:1px solid rgba(255,118,117,0.2);
+    border-radius:8px; padding:12px 16px; margin-top:12px; font-size:13px;
+    color: rgba(255,118,117,0.9);
+  }
+
+  /* ===== STATS SECTION ===== */
+  .stats-grid {
+    display:grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap:16px; margin-bottom:32px;
+  }
+  .stat-card {
+    background: var(--bg-card); border:1px solid var(--border);
+    border-radius:14px; padding:20px; text-align:center;
+  }
+  .stat-num {
+    font-size:32px; font-weight:800;
+    background: var(--gradient-2); -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+  }
+  .stat-label { font-size:12px; color:var(--text-muted); margin-top:4px; }
+
+  .type-dist { display:flex; flex-wrap:wrap; gap:10px; margin-top:16px; }
+  .type-tag {
+    padding:8px 16px; border-radius:10px; font-size:13px; font-weight:600;
+  }
+
+  /* ===== ACTION TABLE ===== */
+  .action-table-wrap { overflow-x:auto; margin-top:20px; }
+  table {
+    width:100%; border-collapse:collapse;
+    font-size:13px;
+  }
+  th {
+    background: rgba(108,92,231,0.15); color:var(--accent-light);
+    padding:14px 16px; text-align:left; font-weight:700;
+    font-size:12px; letter-spacing:0.5px;
+    border-bottom:2px solid var(--primary);
+  }
+  td {
+    padding:14px 16px; border-bottom:1px solid var(--border);
+    vertical-align:top; color:rgba(232,232,240,0.85);
+  }
+  tr:hover td { background:rgba(108,92,231,0.05); }
+  .prio-high { color:var(--danger); font-weight:700; }
+  .prio-mid { color:var(--warning); font-weight:700; }
+  .prio-low { color:var(--accent-light); font-weight:700; }
+
+  /* ===== FOOTER TIP ===== */
+  .footer-tip {
+    background: linear-gradient(135deg, rgba(108,92,231,0.1), rgba(0,184,148,0.1));
+    border:1px solid rgba(108,92,231,0.2);
+    border-radius:16px; padding:24px; margin-top:32px;
+    text-align:center; font-size:14px; color:rgba(232,232,240,0.85);
+    line-height:1.8;
+  }
+  .footer-tip strong { color:var(--accent-light); }
+  .footer-tip em { color:#a29bfe; font-style:normal; font-weight:600; }
+
+  /* ===== TABLE IN CARD ===== */
+  .card table { width:100%; font-size:13px; margin:10px 0; }
+  .card th {
+    background:rgba(108,92,231,0.1); color:var(--text-muted);
+    padding:8px 12px; text-align:left; font-weight:600; font-size:12px;
+    border-bottom:1px solid var(--border);
+  }
+  .card td { padding:8px 12px; border-bottom:1px solid rgba(255,255,255,0.03); color:rgba(232,232,240,0.75); }
+  .card tr:hover td { background:rgba(108,92,231,0.03); }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width:600px) {
+    body { padding:12px; }
+    .header { padding:32px 16px 24px; }
+    .card { padding:20px; }
+    .card-header { flex-direction:column; gap:10px; }
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    table { font-size:12px; }
+    th,td { padding:10px 8px; }
+  }
+
+  /* ===== MINI TABLE WRAP ===== */
+  .mini-table-wrap { overflow-x:auto; margin:8px 0; border-radius:8px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- ========== HEADER ========== -->
+<header class="header">
+  <div class="header-badge">🤖 WEEKLY BRIEFING</div>
+  <h1>AI 干货周报<br><span style="font-size:0.6em;font-weight:500;-webkit-text-fill-color:var(--text-muted)">内容创作者必看</span></h1>
+  <div class="header-meta">
+    <span>📅 扫描时间：<strong>2026年4月24日</strong></span>
+    <span>📊 数据源：<strong>65个顶级 AI Builder 账号</strong></span>
+    <span>🎯 筛选：<strong>✅ 立刻能用 | ✅ 工作流改进 | ✅ 可复用方法论</strong></span>
+  </div>
+</header>
+
+<div class="quote-box">
+  📍 受众定位：AI 内容创作者和爱好者 — 只看实用干货，跳过极客技术细节
+</div>
+
+<!-- ========== CONTENT LIST ========== -->
+<h2 class="section-title"><span class="icon">🔥</span> 本周最实用的内容</h2>
+
+<!-- ===== CARD 1 ===== -->
+<article class="card">
+  <div class="card-header">
+    <div class="card-number">1</div>
+    <h3 class="card-title">Karpathy 的「LLM 知识管家」工作流 — 把 AI 从问答工具升级为知识架构师</h3>
+  </div>
+  <div class="card-meta">
+    <span class="meta-item">👤 <strong>@karpathy</strong> | 2026.04.04</span>
+    <span class="tag tag-method">🛠️ 可复用方法</span>
+    <span class="tag tag-workflow">💡 工作流优化</span>
+  </div>
+  <div class="card-section-title">核心方法 / 技巧</div>
+  <ul>
+    <li><strong>去中心化 RAG 方案：</strong>不依赖复杂的检索系统，直接将所有知识内化为结构化 Markdown 文档（~100篇文章 / ~40万词规模无需 RAG）</li>
+    <li><strong>三步闭环流程：</strong>原始素材收集（Obsidian Web Clipper）→ LLM 自动编译（摘要+概念页+反向链接）→ 持续维护（一致性检查+幻灯片输出+图表渲染）</li>
+    <li><strong>输出回流机制：</strong>新产出自动回到知识库，形成复利效应，越用越值钱</li>
+    <li><strong>成本极低：</strong>约 $0.01/千 token，个人使用几乎可忽略</li>
+    <li><strong>推荐技术栈：</strong>Obsidian + Web Clipper + GPT-4/Claude + Marp（幻灯片）</li>
+  </ul>
+  <div class="why-useful">
+    <div class="why-useful-label">💡 为什么有用</div>
+    <p>你已经有 Obsidian 大脑了！这套方法可以把你现有的碎片笔记升级为<strong>自维护的知识系统</strong>——AI 自动帮你做摘要、建链接、查矛盾、出幻灯片。从"信息消费者"变成"知识架构师"，对一人公司内容矩阵的搭建有直接帮助。</p>
+  </div>
+  <a class="link-btn" href="https://x.com/karpathy/status/2040470801506541998" target="_blank">🔗 查看原始推文 →</a>
+</article>
+
+<!-- ===== CARD 2 ===== -->
+<article class="card">
+  <div class="card-header">
+    <div class="card-number">2</div>
+    <h3 class="card-title">AI Agent 提示词终极指南 — 3C 框架 + 「实习生测试法」</h3>
+  </div>
+  <div class="card-meta">
+    <span class="meta-item">👤 <strong>@shumer</strong> (Matt Shumer) | 2026.04.21</span>
+    <span class="tag tag-prompt">📝 提示词技巧</span>
+    <span class="tag tag-method">🛠️ 可复用方法</span>
+  </div>
+  <div class="card-section-title">核心方法 / 技巧</div>
+  <ul>
+    <li><strong>3C 框架（专为 AI Agent 设计，非普通聊天）：</strong>
+      <br><em style="color:var(--text-muted)">Context（上下文+材料）→ Constraints（约束+验证）→ Composition（交付物形状）</em>
+    </li>
+    <li><strong>「实习生测试法」：</strong>把 prompt 交给从未见过你的实习生，他能不回来问你任何问题就开始工作吗？如果能 → Context 够了；如果不能 → Agent 也会猜错</li>
+    <li><strong>最高杠杆短语：「Don't finish until...」</strong>——改变"完成"的定义：从"产生了东西"变为<strong>"产生并验证正确"</strong></li>
+    <li><strong>完整 Prompt 模板：</strong>CONTEXT → TASK → CONSTRAINTS → VERIFICATION → OUTPUT FORMAT 五段式结构</li>
+    <li><strong>4 个实战案例：</strong>董事会演示文稿 / 竞品调研 / 内容草稿 / Bug修复</li>
+  </ul>
+  <div class="why-useful">
+    <div class="why-useful-label">💡 为什么有用</div>
+    <p>你现在就在用 WorkBuddy 的 Agent 模式！这个框架能让你给 AI 下达的指令从"一句话"变成"<strong>完整的工作简报</strong>"，大幅减少 AI 猜错方向和交出半成品的情况。特别是"Don't finish until"验证模式，能让 Agent 自主检查产物质量后再交给你。</p>
+  </div>
+  <a class="link-btn" href="https://shumer.dev/prompting-ai-agents" target="_blank">🔗 查看完整指南 →</a>
+</article>
+
+<!-- ===== CARD 3 ===== -->
+<article class="card">
+  <div class="card-header">
+    <div class="card-number">3</div>
+    <h3 class="card-title">2026 年 Prompt 框架全景指南 — 从 RTF 到 CREATE，哪个适合你？</h3>
+  </div>
+  <div class="card-meta">
+    <span class="meta-item">📚 综合整理自多篇 X 讨论与学术论文 | 2026.04.19 更新</span>
+    <span class="tag tag-prompt">📝 提示词技巧</span>
+    <span class="tag tag-workflow">💡 工作流优化</span>
+  </div>
+  <div class="card-section-title">6 大实用框架速查</div>
+  <div class="mini-table-wrap">
+  <table>
+    <tr><th>框架</th><th>复杂度</th><th>最佳场景</th></tr>
+    <tr><td><strong>RTF</strong> (角色+任务+格式)</td><td>⭐ 低</td><td>快速回答、翻译、表格</td></tr>
+    <tr><td><strong>TASS</strong> (任务+受众+风格+结构)</td><td>⭐⭐ 中</td><td>文案创作、社媒、邮件 ← 创作者首选</td></tr>
+    <tr><td><strong>CARE</strong> (上下文+行动+结果+示例)</td><td>⭐⭐ 中</td><td>商业报告、数据分析</td></tr>
+    <tr><td><strong>CREATE</strong> (人设+请求+示例+细节+格式+负面约束)</td><td>⭐⭐⭐ 高</td><td>复杂项目、长文写作</td></tr>
+    <tr><td><strong>COAST</strong> (上下文+目标+行动+场景+任务)</td><td>⭐⭐⭐ 高</td><td>战略规划</td></tr>
+    <tr><td><strong>Chain-of-Thought</strong> (思维链)</td><td>⭐⭐⭐ 高</td><td>数学、逻辑、解题</td></tr>
+  </table>
+  </div>
+  <div class="card-section-title">立刻能用 3 个技巧</div>
+  <ul>
+    <li><strong>万能迭代法：</strong>每次 AI 回复后问"这 3 个弱点是什么？重写它"</li>
+    <li><strong>CREATE + CoT 组合拳：</strong>实测邮件回复率从 <em style="color:var(--danger)">19% → 64%</em>（提升 3 倍以上！）</li>
+    <li><strong>Few-Shot 省 Token 策略：</strong>2-5个高质量示例即可（3 个顶 10 个泛泛之辈）</li>
+    <li><strong>被严重低估的武器：负面约束</strong>（如"不要用反问句开头""不要提竞品"），效果胜过二十行正面指令</li>
+  </ul>
+  <div class="why-useful">
+    <div class="why-useful-label">💡 为什么有用</div>
+    <p>你每天都要给 AI 写各种指令（公众号文章、小红书、口播稿、日报）。选对框架 = 输出质量翻倍。<strong>TASS 框架</strong>特别适合你的内容创作场景——指定受众参数后，同一个任务能自动切换语气和深度。</p>
+  </div>
+  <a class="link-btn" href="https://pasqualepillitteri.it/en/news/1090/prompt-engineering-2026-frameworks-complete-guide" target="_blank">🔗 查看参考来源 →</a>
+</article>
+
+<!-- ===== CARD 4 ===== -->
+<article class="card">
+  <div class="card-header">
+    <div class="card-number">4</div>
+    <h3 class="card-title">Claude Design 上线 — 用对话做出专业级 PPT / 原型 / 营销物料</h3>
+  </div>
+  <div class="card-meta">
+    <span class="meta-item">🏢 <strong>@AnthropicAI</strong> (Mike Krieger 主导) | 2026.04.17</span>
+    <span class="tag tag-tool">🚀 新工具</span>
+    <span class="tag tag-workflow">💡 工作流优化</span>
+  </div>
+  <div class="card-section-title">核心方法 / 技巧</div>
+  <ul>
+    <li><strong>定位：</strong>不是让 AI 画图（那是 Midjourney 的事），而是让 AI 做<strong>设计师</strong>——产出结构化设计物（PPT/原型/线框图/仪表盘/海报）</li>
+    <li><strong>5 步闭环工作流：</strong>自然语言描述需求 → Opus 4.7 生成初稿 → 4 种迭代方式 → 6 种导出出口（PDF/PPTX/HTML/Canva/ZIP/Claude Code）→ 交付</li>
+    <li><strong>杀手级能力：Design → Code 闭环</strong>——设计稿可直接变成生产级代码</li>
+    <li><strong>Canva 官方合作：</strong>Claude Design 做初稿 → 导出到 Canva 精修分发</li>
+    <li><strong>30 秒拿到想法的视觉呈现</strong>，而不是 45 分钟电话会</li>
+  </ul>
+  <div class="why-useful">
+    <div class="why-useful-label">💡 为什么有用</div>
+    <p>作为一人公司，你经常需要自己出 PPT、封面图、信息图。Claude Design 能让你用对话快速产出"够用的"专业级设计物。特别是 <strong>PPTX 导出功能</strong>——以后做课程课件、分享演示可以直接用它出初稿。</p>
+  </div>
+  <div class="note-box">⚠️ 注意：Pro 用户约 30 分钟耗尽一周额度（Opus 4.7 token 消耗极高），建议用在重要项目上。</div>
+  <a class="link-btn" href="https://www.ai-insight.org/reports/claude-design-2026" target="_blank">🔗 查看深度解读 →</a>
+</article>
+
+<!-- ===== CARD 5 ===== -->
+<article class="card">
+  <div class="card-header">
+    <div class="card-number">5</div>
+    <h3 class="card-title">Hermes Agent 开源 — 会自我进化的 AI 同事，33K Stars</h3>
+  </div>
+  <div class="card-meta">
+    <span class="meta-item">🏢 <strong>@NousResearch</strong> | 2026.04.03 发布 v0.7.0</span>
+    <span class="tag tag-tool">🚀 新工具</span>
+    <span class="tag tag-method">🛠️ 可复用方法</span>
+  </div>
+  <div class="card-section-title">核心方法 / 技巧</div>
+  <ul>
+    <li><strong>自进化闭环（核心差异化）：</strong>完成任务后自动提取经验→创建可复用 Skill→使用中持续优化→越用越强</li>
+    <li><strong>模型无关架构：</strong>一键切换 OpenAI/Claude/GLM/Kimi/DeepSeek 等 200+ 模型，无供应商锁定</li>
+    <li><strong>跨平台部署：</strong>Telegram/Discord/Slack/WhatsApp/Email 全覆盖 + 手机远程控制服务器</li>
+    <li><strong>多 Agent 并行：</strong>同时处理代码开发 + 内容创作 + 社媒管理 + 数据分析</li>
+    <li><strong>一行安装：</strong><code style="background:rgba(108,92,231,0.15);padding:2px 8px;border-radius:4px;color:#a29bfe;font-size:12px;">curl ... hermes-agent install.sh | bash</code></li>
+    <li><strong>零成本迁移 OpenClaw：</strong><code style="background:rgba(108,92,231,0.15);padding:2px 8px;border-radius:4px;color:#a29bfe;font-size:12px;">hermes claw migrate</code></li>
+  </ul>
+  <div class="why-useful">
+    <div class="why-useful-label">💡 为什么有用</div>
+    <p>你在构建「<strong>AI 一人公司操作系统</strong>」，Hermes Agent 是目前最接近"AI 同事"的开源方案。它的自进化 Skill 机制意味着你不用手动写每个 Skill——Agent 干完活后会自动总结经验。加上跨会话记忆 + 多平台部署，非常适合一人公司的自动化运营。<br><strong style="color:var(--accent-light)">成本优势：用 GLM-5.1 开源模型驱动，成本远低于 Claude Code。</strong></p>
+  </div>
+  <a class="link-btn" href="https://github.com/NousResearch/hermes-agent" target="_blank">🔗 GitHub →</a>
+</article>
+
+<!-- ===== CARD 6 ===== -->
+<article class="card">
+  <div class="card-header">
+    <div class="card-number">6</div>
+    <h3 class="card-title">AI 内容工作流效率数据 — 结构化工作流让产量提升 3.2 倍</h3>
+  </div>
+  <div class="card-meta">
+    <span class="meta-item">📊 HubSpot / Salesforce / McKinsey 2026 报告</span>
+    <span class="tag tag-workflow">💡 工作流优化</span>
+    <span class="tag tag-prompt">思维转变</span>
+  </div>
+  <div class="card-section-title">核心效率数据</div>
+  <div class="mini-table-wrap">
+  <table>
+    <tr><th>效率维度</th><th>提升幅度</th><th>关键洞察</th></tr>
+    <tr><td>生产速度</td><td style="color:var(--accent-light);font-weight:700">↓ 52%</td><td>结构性压缩，非单纯加速</td></tr>
+    <tr><td>人均产量</td><td style="color:var(--accent-light);font-weight:700">↑ 3.2x</td><td>瓶颈转移到"精修"</td></tr>
+    <tr><td>混合模式效率</td><td style="color:var(--accent-light);font-weight:700">↑ 2.4x</td><td>"AI 起草 + 人工编辑"最优</td></tr>
+    <tr><td>修改周期</td><td style="color:var(--accent-light);font-weight:700">↓ 37%</td><td>标准化提示词提高初稿质量</td></tr>
+    <tr><td>ROI 提升</td><td style="color:var(--accent-light);font-weight:700">57%</td><td>超半数营销人员证实</td></tr>
+  </table>
+  </div>
+  <div class="card-section-title">2026 最佳实践 Top 3</div>
+  <ul>
+    <li><strong>全链路重组：</strong>连接 简报→创作→重写→审核→质控 整条链，消除阶段间摩擦</li>
+    <li><strong>人机深度耦合：</strong>人工判断嵌入系统流程中，不只是最后一步"清理工"</li>
+    <li><strong>一致性即资产：</strong>标准化工作流 = 品牌资产，降低错误率的同时稳定发布节奏</li>
+  </ul>
+  <div class="why-useful">
+    <div class="why-useful-label">💡 为什么有用</div>
+    <p>你正在搭建内容矩阵（公众号+小红书+短视频+朋友圈+社群），这些数据告诉你：<strong>关键不在工具速度，在工作流设计</strong>。把"一步生成黑盒"拆成"多阶段流水线"（构思→起草→重写→校验），配合 content-matrix skill 的多形态分发，理论上可以实现一人公司的规模化内容产出。</p>
+  </div>
+  <a class="link-btn" href="https://writebros.ai/resources/ai-content-workflow-efficiency-statistics" target="_blank">🔗 数据来源 →</a>
+</article>
+
+<!-- ===== CARD 7 ===== -->
+<article class="card">
+  <div class="card-header">
+    <div class="card-number">7</div>
+    <h3 class="card-title">Tool Use Prompting Patterns — 让 AI 调用工具时不再「翻车」</h3>
+  </div>
+  <div class="card-meta">
+    <span class="meta-item">👤 <strong>@sureprompts</strong> (社区整理) | 2026.04.19</span>
+    <span class="tag tag-prompt">📝 提示词技巧</span>
+  </div>
+  <div class="card-section-title">核心方法 / 技巧</div>
+  <ul>
+    <li><strong>清晰的工具描述：</strong>每个工具的功能、输入输出必须精确描述</li>
+    <li><strong>Tool-forcing vs Tool-permitting：</strong>区分"必须调用某工具"和"可以选择调用"</li>
+    <li><strong>错误恢复模式：</strong>当工具返回异常时，Prompt 应指导 AI 如何优雅降级或重试</li>
+    <li><strong>畸形参数处理：</strong>明确告诉 AI 遇到不合法输入时的处理策略</li>
+  </ul>
+  <div class="why-useful">
+    <div class="why-useful-label">💡 为什么有用</div>
+    <p>你在 WorkBuddy 中大量使用各种工具调用（飞书 CLI、文件读写、搜索等）。这些 Pattern 能让你的 AI Agent 在调用工具时更可靠——减少<strong>"调用了错误的工具""传错了参数""遇到错误就卡住"</strong>这类问题。</p>
+  </div>
+  <a class="link-btn" href="https://sureprompts.com/blog/tool-use-prompting-patterns" target="_blank">🔗 查看原文 →</a>
+</article>
+
+<!-- ===== CARD 8 ===== -->
+<article class="card">
+  <div class="card-header">
+    <div class="card-number">8</div>
+    <h3 class="card-title">一条好 Prompt 的万能模板 — 含实战案例拆解</h3>
+  </div>
+  <div class="card-meta">
+    <span class="meta-item">🌐 中文 AI 社区热传 | 2026.04.19</span>
+    <span class="tag tag-prompt">📝 提示词技巧</span>
+    <span class="tag tag-method">🛠️ 可复用方法</span>
+  </div>
+  <div class="card-section-title">核心方法 / 技巧</div>
+  <ul>
+    <li><strong>万能 Prompt 结构：</strong>角色定义 → 任务背景 → 约束条件 → 输出格式 → 质量标准 → 示例参考</li>
+    <li><strong>实战案例拆解：</strong>从"帮我写一篇文章"到高质量输出的完整 Prompt 演进过程</li>
+    <li><strong>常见陷阱：</strong>过于宽泛的角色设定、缺少负面约束、忘记指定输出格式、没给示例导致风格跑偏</li>
+    <li><strong>中文场景适配：</strong>针对 DeepSeek/Kimi/Claude 中文优化的特殊技巧</li>
+  </ul>
+  <div class="why-useful">
+    <div class="why-useful-label">💡 为什么有用</div>
+    <p>你日常需要用 AI 写公众号文章、小红书笔记、口播稿、朋友圈文案。这个万能模板可以直接套用到你的 alina-xhs-writer、alina-video-writer 等 skill 的 prompt 优化中，<strong>提升各渠道内容的输出质量和一致性</strong>。</p>
+  </div>
+  <a class="link-btn" href="https://leejiliang.cn/2026/04/19/%E4%B8%80%E6%9D%A1%E5%A5%BD-Prompt-%E7%9A%84%E4%B8%87%E8%83%BD%E6%A8%A1%E6%9D%BF/" target="_blank">🔗 查看完整文章 →</a>
+</article>
+
+
+<!-- ========== STATS ========== -->
+<h2 class="section-title"><span class="icon">📊</span> 筛选统计</h2>
+
+<div class="stats-grid">
+  <div class="stat-card">
+    <div class="stat-num">65</div>
+    <div class="stat-label">扫描账号数</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num">11</div>
+    <div class="stat-label">搜索批次</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num">8</div>
+    <div class="stat-label">筛选出的实用内容</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num">7天</div>
+    <div class="stat-label">时间范围</div>
+  </div>
+</div>
+
+<div class="type-dist">
+  <span class="type-tag" style="background:rgba(108,92,231,0.15);color:#a29bfe;">🛠️ 可复用方法 ×3</span>
+  <span class="type-tag" style="background:rgba(0,184,148,0.15);color:#55EFC4;">💡 工作流优化 ×3</span>
+  <span class="type-tag" style="background:rgba(253,203,110,0.15);color:#f9ca24;">📝 提示词技巧 ×4</span>
+  <span class="type-tag" style="background:rgba(116,185,255,0.15);color:#74B9FF;">🚀 新工具 ×2</span>
+</div>
+
+<p style="margin-top:16px;font-size:13px;color:var(--text-muted)">
+  ❌ 已排除：GPU/算力基础设施 · 融资新闻 · 纯学术模型对比 · 企业B2B公告（除非对个人有用）· 无法立刻应用的论文
+</p>
+
+
+<!-- ========== ACTION ITEMS ========== -->
+<h2 class="section-title"><span class="icon">🎯</span> Alina 本周可行动项</h2>
+
+<div class="action-table-wrap">
+<table>
+  <thead>
+    <tr>
+      <th style="width:60px">优先级</th>
+      <th>行动</th>
+      <th style="width:50px">对应</th>
+      <th style="width:90px">预计耗时</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="prio-high">🔴 高</td>
+      <td>用 <strong>3C 框架</strong>重写一个 skill 的 prompt（建议从 alina-xhs-writer 开始），加入"Don't finish until"验证步骤</td>
+      <td>#2</td>
+      <td>30分钟</td>
+    </tr>
+    <tr>
+      <td class="prio-high">🔴 高</td>
+      <td>试用 <strong>Claude Design</strong> 做一份课程 PPT 或产品介绍页面</td>
+      <td>#4</td>
+      <td>20分钟</td>
+    </tr>
+    <tr>
+      <td class="prio-mid">🟡 中</td>
+      <td>用 <strong>Karpathy 方法论</strong>升级 Obsidian 大脑——加一层 LLM 自动编译流程</td>
+      <td>#1</td>
+      <td>2小时（可分批）</td>
+    </tr>
+    <tr>
+      <td class="prio-mid">🟡 中</td>
+      <td>了解 <strong>Hermes Agent</strong> 是否可以作为「AI 一人公司 OS」的底层引擎</td>
+      <td>#5</td>
+      <td>1小时研究</td>
+    </tr>
+    <tr>
+      <td class="prio-low">🟢 低</td>
+      <td>将 <strong>TASS 框架</strong>应用到日常——每次写文案前先填 Task/Audience/Style/Structure 四格</td>
+      <td>#3</td>
+      <td>10分钟养成习惯</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+<!-- ========== FOOTER TIP ========== -->
+<div class="footer-tip">
+  💡 每条内容都经过"内容创作者读完后能否立刻应用到工作中改进效果？"的测试<br><br>
+  本周最值得投入时间的两条：<br>
+  <em>#2 AI Agent 3C 提示词框架</em> 和 <em>#1 Karpathy 知识库工作流</em><br><br>
+  前者直接提升你和 AI 协作的质量，后者可以把你的 Obsidian 大脑从"仓库"升级为<strong>"自进化系统"</strong>。
+</div>
+
+<br>
+
+</div><!-- /.container -->
+</body>
+</html>
